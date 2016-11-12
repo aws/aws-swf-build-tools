@@ -40,7 +40,7 @@ import com.amazonaws.services.simpleworkflow.flow.annotations.Workflow;
 
 @SupportedAnnotationTypes({ "com.amazonaws.services.simpleworkflow.flow.annotations.Activities",
         "com.amazonaws.services.simpleworkflow.flow.annotations.Workflow" })
-@SupportedSourceVersion(SourceVersion.RELEASE_7)
+@SupportedSourceVersion(SourceVersion.RELEASE_8)
 public class AsynchronyDeciderAnnotationProcessor extends AbstractProcessor {
 
     private Set<DeclaredType> annotationsToExcludeFromCopying;
