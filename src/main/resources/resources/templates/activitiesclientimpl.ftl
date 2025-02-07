@@ -62,9 +62,8 @@
     protected Promise<${activityMethod.methodReturnType}> ${activityImplMethodName}(final ActivitySchedulingOptions optionsOverride, Promise<?>... waitFor) {
 </#if>
 
-        ActivityType _activityType = new ActivityType();
-		_activityType.setName("${activityName}");
-		_activityType.setVersion("${activityVersion}");
+        ActivityType _activityType = ActivityType.builder()
+           .name("${activityName}").version("${activityVersion}").build();
 
         Promise[] _input_ = new Promise[${parameterCount}];
 <#list activityMethod.methodParameters as param>
@@ -83,7 +82,7 @@ import com.amazonaws.services.simpleworkflow.flow.ActivitySchedulingOptions;
 import com.amazonaws.services.simpleworkflow.flow.DataConverter;
 import com.amazonaws.services.simpleworkflow.flow.core.Promise;
 import com.amazonaws.services.simpleworkflow.flow.generic.GenericActivityClient;
-import com.amazonaws.services.simpleworkflow.model.ActivityType;
+import com.amazonaws.services.simpleworkflow.flow.model.ActivityType;
 
 public class ${clientImplName} extends ActivitiesClientBase implements ${clientInterfaceName} {
 

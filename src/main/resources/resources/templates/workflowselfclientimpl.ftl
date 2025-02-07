@@ -1,14 +1,10 @@
 <#include "header.ftl">
 <#import "common.ftl" as lib>
+<#macro generateExecuteMethodImpl workflow>
 <#if workflow.executeMethod??>
 <#assign executeMethod = workflow.executeMethod>
 <#assign parameterCount = executeMethod.methodParameters?size>
 <#assign hasParametersAndExecute = (parameterCount > 0)>
-<#else>
-<#assign hasParametersAndExecute = false>
-</#if>
-<#macro generateExecuteMethodImpl workflow>
-<#if workflow.executeMethod??>
 <#assign workflowImplMethodName = "${executeMethod.methodName}Impl">
 <#if hasParametersAndExecute>
     @Override
@@ -82,9 +78,7 @@
 </#macro>
 package ${packageName};
 
-<#if hasParametersAndExecute>
 import com.amazonaws.services.simpleworkflow.flow.core.AndPromise;
-</#if>
 import com.amazonaws.services.simpleworkflow.flow.core.Promise;
 import com.amazonaws.services.simpleworkflow.flow.core.Task;
 import com.amazonaws.services.simpleworkflow.flow.DataConverter;
