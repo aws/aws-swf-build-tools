@@ -5,8 +5,8 @@ import com.amazonaws.services.simpleworkflow.flow.DataConverter;
 import com.amazonaws.services.simpleworkflow.flow.StartWorkflowOptions;
 import com.amazonaws.services.simpleworkflow.flow.WorkflowClientFactoryBase;
 import com.amazonaws.services.simpleworkflow.flow.generic.GenericWorkflowClient;
-import com.amazonaws.services.simpleworkflow.model.WorkflowExecution;
-import com.amazonaws.services.simpleworkflow.model.WorkflowType;
+import com.amazonaws.services.simpleworkflow.flow.model.WorkflowExecution;
+import com.amazonaws.services.simpleworkflow.flow.model.WorkflowType;
 
 public class ${clientFactoryImplName} extends WorkflowClientFactoryBase<${clientInterfaceName}> implements ${clientFactoryName} {
     
@@ -24,7 +24,7 @@ public class ${clientFactoryImplName} extends WorkflowClientFactoryBase<${client
 
     public ${clientFactoryImplName}(StartWorkflowOptions startWorkflowOptions, DataConverter dataConverter,
             GenericWorkflowClient genericClient) {
-        super(startWorkflowOptions, new ${workflow.dataConverter}(), genericClient);
+        super(startWorkflowOptions, dataConverter, genericClient);
     }
     
     @Override
@@ -34,9 +34,8 @@ public class ${clientFactoryImplName} extends WorkflowClientFactoryBase<${client
 <#assign executeMethod = workflow.executeMethod>
 <#assign workflowName = executeMethod.workflowName>
 <#assign workflowVersion = executeMethod.workflowVersion>
-        WorkflowType workflowType = new WorkflowType();
-        workflowType.setName("${workflowName}");
-        workflowType.setVersion("${workflowVersion}");
+        WorkflowType workflowType = WorkflowType.builder()
+          .name("${workflowName}").version("${workflowVersion}").build();
         return new ${clientImplName}(execution, workflowType, options, dataConverter, genericClient);
 <#else>
         return new ${clientImplName}(execution, null, options, dataConverter, genericClient);
