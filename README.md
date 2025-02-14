@@ -10,6 +10,6 @@ The AWS SWF build tools helps to generate several key classes based on annotated
     <dependency>
        <groupId>com.amazonaws</groupId>
        <artifactId>aws-swf-build-tools</artifactId>
-       <version>1.0</version>
+       <version>2.0.0</version>
     </dependency>
 ```
